@@ -8,13 +8,21 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
-@bot.event
+@bot.event  #dekarator
 async def on_ready():
     print(f'Giriş yapıldı:  {bot.user.name}')
 
 @bot.command()
 async def start(ctx):
     await ctx.send("Merhaba! Ben bir sohbet yöneticisi botuyum!")
+
+@bot.command()
+async def faktoriel(ctx,sayi:int):
+    result=1
+    for i in range(1,sayi+1):
+        result *=i
+    await ctx.send(result)
+
 
 @bot.command()
 @commands.has_permissions(ban_members=True)
